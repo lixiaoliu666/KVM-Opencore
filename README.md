@@ -1,17 +1,5 @@
-# KVM-Opencore
-
-This is a fork of [Leoyzen's OpenCore image](https://github.com/leoyzen/KVM-Opencore) for QEMU/KVM, 
-which I've extended to add a build system for automatically buliding all of the required files from 
-sourcecode, and to keep up with the latest OpenCore changes.
-
-It is currently tested to boot macOS Catalina, Big Sur, and Monterey, but will likely also boot older 
-versions of macOS.
-
-Although the images offered here should work on all QEMU/KVM distributions, I specifically build
-and test these for my Proxmox Hackintosh guide here:
-
-https://www.nicksherlock.com/2021/10/installing-macos-12-monterey-on-proxmox-7/
-
-Note that although the images in the Releases have filenames like OpenCore-v15.iso, these aren't 
-real ISOs, but rather raw hard disk images, and need to be booted as such. (They're just using .iso
-extensions so they'll appear in Proxmox's disk image picker).
+本项目源于https://github.com/thenickdude/KVM-Opencore/releases 他的V21版本，这个版本修复了直通独显卡900秒（20分钟）问题（其实他是没修复的，他的oc里面是没加-v参数的，他可能觉得解决了问题，觉得是蓝牙导致的，其实-v开启了一样出卡900秒或者20分钟才能进系统问题）
+要支持amd免驱独显，我编辑他的config.plist在里面增加启动超时来开默认启动（比如3秒，config.plist->Misc->Boot->Timeout等待时间->设置为3秒左右,当然你也可以设置为其他值），以及加amd独显参数config.plist->NVRAM->7C436110-AB2A-4BBB-A880-FE41995C9F82->boot-args->增加 agdpmod=pikera
+另外他的V21目前不支持6600免驱15系统（rx560可以免驱，6600老是点不亮），我和黑苹果屋经过测试，觉得解决办法是oc从0.9.9升级1.0.2，具体操作就是下载最新的oc1.0.2的空白配置，空白配置里面的acpi文件夹和kexts文件夹都是空的，也没有配置文件，把efi整个文件夹替换kvm-opencore的efi整个文件夹，就这样成功了，然后我用diskgenis软件把他做成了一个img文件，可以直接pve管理界面光驱iso那直接上传进去，以及在虚拟机中添加ide的0编号光驱（也可以sata的0编号光驱），直接选择加载这个img，并且设置这个光驱为默认开机选项！！不仅6600免驱点不亮问题解决了，重启连带win虚拟机死机问题也解决了，重启连带pve物理机死机问题也解决了，随便更新macos新版本也解决了。一声感叹，终于解决了这么多无聊问题。
+如果你觉得可以，可以下载我Releases中的kvm-opencore1.0.2V21-131415amd.img直接使用就是
+详细使用可以访问b站我的文章：https://www.bilibili.com/opus/999921111571365906 oc去掉-v参数解决pve黑苹果重启关机导致pve物理机死机问题，提升运行稳定性
