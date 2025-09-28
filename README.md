@@ -20,3 +20,6 @@ If you think it's feasible, you can download the kvm-opencore1.0.2V21-131415amd.
 详细使用可以访问b站我的文章：https://www.bilibili.com/opus/999921111571365906 oc去掉-v参数解决pve黑苹果重启关机导致pve物理机死机问题，提升运行稳定性
 
 For detailed usage instructions, please visit my Bilibili article: https://www.bilibili.com/opus/999921111571365906. By removing the -v parameter in OC (OpenCore), the issue of PVE host machine crashes caused by Hackintosh reboots/shutdowns can be resolved, thereby enhancing operational stability.
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=lixiaoliu666/KVM-Opencore&type=Date)](https://www.star-history.com/#lixiaoliu666/KVM-Opencore&Date)
